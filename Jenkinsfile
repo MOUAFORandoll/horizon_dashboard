@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-    registry = "mouaforandoll/be_dashboard"
+    registry = "mouaforandoll/horizon_dashboard"
     registryCredential = 'docker'
     dockerImage = ''
     }
@@ -37,14 +37,14 @@ pipeline {
                
                 steps{
 
-                  echo 'stop current   be_dashboard  '
+                  echo 'stop current   horizon_dashboard  '
                  
                     script {
                         
                       
                     
-                     sh 'docker stop be_dashboard || true'
-                     sh 'docker rm -f be_dashboard || true'
+                     sh 'docker stop horizon_dashboard || true'
+                     sh 'docker rm -f horizon_dashboard || true'
                      sh 'docker image prune -f'
                           
                         
@@ -57,9 +57,9 @@ pipeline {
           steps {
                 echo 'stardd run..'
                script {  
-                      sh 'docker pull mouaforandoll/be_dashboard' 
-                     sh 'docker run -d --name be_dashboard -p 8000:80 mouaforandoll/be_dashboard:latest'
-                     sh "docker rmi -f mouaforandoll/be_dashboard -f"
+                      sh 'docker pull mouaforandoll/horizon_dashboard' 
+                     sh 'docker run -d --name horizon_dashboard -p 8001:80 mouaforandoll/horizon_dashboard:latest'
+                     sh "docker rmi -f mouaforandoll/horizon_dashboard -f"
 
                   
                
