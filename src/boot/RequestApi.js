@@ -245,7 +245,7 @@ export class RequestApi {
   /**
    *
    *
-   * Status  Mission
+   * Start poste part
    *
    *
    */
@@ -254,536 +254,143 @@ export class RequestApi {
    * @param {*}
    * @returns
    */
-  statusMission = async (data) => {
+  listPosteEmploye = async () => {
+    let dataRes = { status: true };
+
+    await api
+      .get(this.ApiEndPoint.api_postesemployes)
+      .then(async (response) => {
+        if (response.status == 201 || response.status == 200) {
+          dataRes = {
+            status: true,
+            data: response.data,
+          };
+        } else {
+          dataRes = {
+            status: false,
+          };
+        }
+      })
+      .catch(() => {
+        dataRes = {
+          status: false,
+        };
+      });
+    return dataRes;
+  };
+
+  /**
+   *
+   *
+   * Start poste part
+   *
+   *
+   */
+  /**
+   *
+   * @param {*}
+   * @returns
+   */
+  listPosteEmployeFilter = async (employe) => {
+    let dataRes = { status: true };
+
+    await api
+      .get(this.ApiEndPoint.api_postesemployes + "?employe=" + employe)
+      .then(async (response) => {
+        if (response.status == 201 || response.status == 200) {
+          dataRes = {
+            status: true,
+            data: response.data,
+          };
+        } else {
+          dataRes = {
+            status: false,
+          };
+        }
+      })
+      .catch(() => {
+        dataRes = {
+          status: false,
+        };
+      });
+    return dataRes;
+  };
+
+  /**
+   *
+   * @param {*}
+   * @returns
+   */
+  listPoste = async () => {
+    let dataRes = { status: true };
+
+    await api
+      .get(this.ApiEndPoint.postes)
+      .then(async (response) => {
+        if (response.status == 201 || response.status == 200) {
+          dataRes = {
+            status: true,
+            data: response.data,
+          };
+        } else {
+          dataRes = {
+            status: false,
+          };
+        }
+      })
+      .catch(() => {
+        dataRes = {
+          status: false,
+        };
+      });
+    return dataRes;
+  };
+
+  /**
+   *
+   * @param {*}
+   * @returns
+   */
+  listTypePoste = async () => {
+    let dataRes = { status: true };
+
+    await api
+      .get(this.ApiEndPoint.type_postes)
+      .then(async (response) => {
+        if (response.status == 201 || response.status == 200) {
+          dataRes = {
+            status: true,
+            data: response.data,
+          };
+        } else {
+          dataRes = {
+            status: false,
+          };
+        }
+      })
+      .catch(() => {
+        dataRes = {
+          status: false,
+        };
+      });
+    return dataRes;
+  };
+
+  /**
+   *
+   * @param {*}
+   * @returns
+   */
+  affectToPoste = async (data) => {
     // //console.log('sdddsd');
     let dataRes = { status: true };
 
     await api
-      .post(this.ApiEndPoint.missions + "/status", data)
+      .post(this.ApiEndPoint.api_postesemployes, data)
       .then(async (response) => {
         if (response.status == 201 || response.status == 200) {
           dataRes = {
             status: true,
-          };
-        } else {
-          dataRes = {
-            status: false,
-          };
-        }
-      })
-      .catch(() => {
-        dataRes = {
-          status: false,
-        };
-      });
-    return dataRes;
-  };
-
-  /**
-   *
-   * @param {*}
-   * @returns
-   */
-  ListMission = async (data) => {
-    let dataRes = { status: true };
-
-    await api
-      .get(this.ApiEndPoint.missions, data)
-      .then(async (response) => {
-        if (response.status == 201 || response.status == 200) {
-          dataRes = {
-            status: true,
-            data: response.data.data,
-          };
-        } else {
-          dataRes = {
-            status: false,
-          };
-        }
-      })
-      .catch(() => {
-        dataRes = {
-          status: false,
-        };
-      });
-    return dataRes;
-  };
-  /**
-   *
-   *
-   * Start controller de bureau
-   *
-   *
-   */
-  /**
-   *
-   * @param {*}
-   * @returns
-   */
-  SetCTerrain = async (data) => {
-    // //console.log('sdddsd');
-    let dataRes = { status: true };
-
-    await api
-      .post(this.ApiEndPoint.employe + "/set-cterrain", data)
-      .then(async (response) => {
-        if (response.status == 201 || response.status == 200) {
-          dataRes = {
-            status: true,
-          };
-        } else {
-          dataRes = {
-            status: false,
-          };
-        }
-      })
-      .catch(() => {
-        dataRes = {
-          status: false,
-        };
-      });
-    return dataRes;
-  };
-  /**
-   *
-   * @param {*}
-   * @returns
-   */
-  ActivateBiker = async (data) => {
-    // //console.log('sdddsd');
-    let dataRes = { status: true };
-
-    await api
-      .post(this.ApiEndPoint.employe + "/activate-biker", data)
-      .then(async (response) => {
-        if (response.status == 201 || response.status == 200) {
-          dataRes = {
-            status: true,
-          };
-        } else {
-          dataRes = {
-            status: false,
-          };
-        }
-      })
-      .catch(() => {
-        dataRes = {
-          status: false,
-        };
-      });
-    return dataRes;
-  };
-
-  /**
-   *
-   * @param {*}
-   * @returns
-   */
-  AffectBikerToMission = async (data) => {
-    // //console.log('sdddsd');
-    let dataRes = { status: true };
-
-    await api
-      .post(this.ApiEndPoint.employe + "/affect-biker", data)
-      .then(async (response) => {
-        if (response.status == 201 || response.status == 200) {
-          dataRes = {
-            status: true,
-          };
-        } else {
-          dataRes = {
-            status: false,
-          };
-        }
-      })
-      .catch(() => {
-        dataRes = {
-          status: false,
-        };
-      });
-    return dataRes;
-  };
-
-  /**
-   *
-   * @param {*}
-   * @returns
-   */
-  UnAffectBikerToMission = async (data) => {
-    // //console.log('sdddsd');
-    let dataRes = { status: true };
-
-    await api
-      .post(this.ApiEndPoint.employe + "/unaffect-biker", data)
-      .then(async (response) => {
-        if (response.status == 201 || response.status == 200) {
-          dataRes = {
-            status: true,
-          };
-        } else {
-          dataRes = {
-            status: false,
-          };
-        }
-      })
-      .catch(() => {
-        dataRes = {
-          status: false,
-        };
-      });
-    return dataRes;
-  };
-  /**
-   *
-   * @param {*}
-   * @returns
-   */
-  NewControlBiker = async (data) => {
-    // //console.log('sdddsd');
-    let dataRes = { status: true };
-
-    await api
-      .post(this.ApiEndPoint.employe + "/new-control", data)
-      .then(async (response) => {
-        if (response.status == 201 || response.status == 200) {
-          dataRes = {
-            status: true,
-          };
-        } else {
-          dataRes = {
-            status: false,
-          };
-        }
-      })
-      .catch(() => {
-        dataRes = {
-          status: false,
-        };
-      });
-    return dataRes;
-  };
-  /**
-   *
-   * @param {*}
-   * @returns
-   */
-  getMissionsSessionList = async () => {
-    // //console.log('sdddsd');
-    let dataRes = { status: true, data: [] };
-
-    await api
-      .get(this.ApiEndPoint.employe + "/list-mission-session")
-      .then(async (response) => {
-        if (response.status == 201 || response.status == 200) {
-          dataRes = {
-            status: true,
-            data: response.data.data,
-          };
-        } else {
-          dataRes = {
-            status: false,
-          };
-        }
-      })
-      .catch(() => {
-        dataRes = {
-          status: false,
-        };
-      });
-    return dataRes;
-  };
-
-  /**
-   *
-   * @param {*}
-   * @returns
-   */
-  getMissionsControlList = async () => {
-    // //console.log('sdddsd');
-    let dataRes = { status: true, data: [] };
-
-    await api
-      .get(this.ApiEndPoint.employe + "/list-control")
-      .then(async (response) => {
-        if (response.status == 201 || response.status == 200) {
-          dataRes = {
-            status: true,
-            data: response.data.data,
-          };
-        } else {
-          dataRes = {
-            status: false,
-          };
-        }
-      })
-      .catch(() => {
-        dataRes = {
-          status: false,
-        };
-      });
-    return dataRes;
-  };
-
-  /**
-   *
-   * @param {*}
-   * @returns
-   */
-  AnnulControlBiker = async (data) => {
-    // //console.log('sdddsd');
-    let dataRes = { status: true };
-
-    await api
-      .post(this.ApiEndPoint.employe + "/annul-control", data)
-      .then(async (response) => {
-        if (response.status == 201 || response.status == 200) {
-          dataRes = {
-            status: true,
-          };
-        } else {
-          dataRes = {
-            status: false,
-          };
-        }
-      })
-      .catch(() => {
-        dataRes = {
-          status: false,
-        };
-      });
-    return dataRes;
-  };
-  /**
-   *
-   * @param {*}
-   * @returns
-   */
-  ActiveControlBiker = async (data) => {
-    // //console.log('sdddsd');
-    let dataRes = { status: true };
-
-    await api
-      .post(this.ApiEndPoint.employe + "/active-control", data)
-      .then(async (response) => {
-        if (response.status == 201 || response.status == 200) {
-          dataRes = {
-            status: true,
-          };
-        } else {
-          dataRes = {
-            status: false,
-          };
-        }
-      })
-      .catch(() => {
-        dataRes = {
-          status: false,
-        };
-      });
-    return dataRes;
-  };
-  /**
-   *
-   * @param {*}
-   * @returns
-   */
-  ListMissionemploye = async (data) => {
-    // //console.log('sdddsd');
-    let dataRes = { status: true };
-
-    await api
-      .get(this.ApiEndPoint.employe + "/list-control", data)
-      .then(async (response) => {
-        if (response.status == 201 || response.status == 200) {
-          dataRes = {
-            status: true,
-            data: response.data.data,
-          };
-        } else {
-          dataRes = {
-            status: false,
-          };
-        }
-      })
-      .catch(() => {
-        dataRes = {
-          status: false,
-        };
-      });
-    return dataRes;
-  };
-
-  /////
-
-  /**
-   *
-   * @returns retourne les  biker
-   */
-  getListBiker = async () => {
-    let dataRes = { status: true, data: [] };
-
-    await api
-      .get("/biker/read")
-      .then(async (response) => {
-        dataRes = {
-          status: true,
-          data: response.data.data,
-        };
-      })
-      .catch(() => {
-        dataRes = {
-          status: false,
-          data: [],
-        };
-      });
-
-    return dataRes;
-  };
-  /**
-   *
-   * @returns retourne les  cTerrain
-   */
-  getListCTerrain = async () => {
-    let dataRes = { status: true, data: [] };
-
-    await api
-      .get("/cTerrain/read")
-      .then(async (response) => {
-        dataRes = {
-          status: true,
-          data: response.data.data,
-        };
-      })
-      .catch(() => {
-        dataRes = {
-          status: false,
-          data: [],
-        };
-      });
-
-    return dataRes;
-  };
-  /**
-   *
-   
-   * @returns retourne les  employe
-   */
-  getListemploye = async () => {
-    let dataRes = { status: true, data: [] };
-
-    await api
-      .get("/employe/read")
-      .then(async (response) => {
-        dataRes = {
-          status: true,
-          data: response.data.data,
-        };
-      })
-      .catch(() => {
-        dataRes = {
-          status: false,
-          data: [],
-        };
-      });
-
-    return dataRes;
-  };
-  /**
-   *
-   
-   * @returns retourne les  admin
-   */
-  getListAdmin = async () => {
-    let dataRes = { status: true, data: [] };
-
-    await api
-      .get("/admin/read")
-      .then(async (response) => {
-        dataRes = {
-          status: true,
-          data: response.data.data,
-        };
-      })
-      .catch(() => {
-        dataRes = {
-          status: false,
-          data: [],
-        };
-      });
-
-    return dataRes;
-  };
-  /**
-   *
-   * @param {*}  data les informations du affectLivreur
-   * @returns  les informations actualisees
-   */
-  affectLivreur = async (data) => {
-    let dataRes = { status: true, data: [] };
-
-    await api
-      .patch(this.ApiEndPoint.livraisons + "/affect_livreur", data)
-      .then(async (response) => {
-        dataRes = {
-          status: true,
-          data: response.data.data,
-        };
-      })
-      .catch(() => {
-        dataRes = {
-          status: false,
-          data: [],
-        };
-      });
-    //console.log(dataRes)
-    return dataRes;
-  };
-
-  /**
-   *
-   * @param {*}
-   * @returns
-   */
-  NewSecteur = async (data) => {
-    // //console.log('sdddsd');
-    let dataRes = { status: true };
-
-    await api
-      .post(this.ApiEndPoint.secteur + "/new", data)
-      .then(async (response) => {
-        if (response.status == 201 || response.status == 200) {
-          dataRes = {
-            status: true,
-          };
-        } else {
-          dataRes = {
-            status: false,
-          };
-        }
-      })
-      .catch(() => {
-        dataRes = {
-          status: false,
-        };
-      });
-    return dataRes;
-  };
-
-  /**
-   *
-   * @param {*}
-   * @returns
-   */
-  ListSecteur = async (data) => {
-    let dataRes = { status: true };
-
-    await api
-      .get(this.ApiEndPoint.secteur + "/read", data)
-      .then(async (response) => {
-        if (response.status == 201 || response.status == 200) {
-          dataRes = {
-            status: true,
-            data: response.data.data,
           };
         } else {
           dataRes = {

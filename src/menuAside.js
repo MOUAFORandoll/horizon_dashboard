@@ -22,14 +22,15 @@ export default [
     icon: mdiMonitor,
     label: "Dashboard",
   },
-  // {
-  //   to: "/Employe",
-  //   label: "Employe",
-  //   icon: mdiAccountSwitch,
-  // },
+
   {
     to: "/Paiement",
     icon: mdiHomeGroup,
     label: "Paiement",
+  },
+  {
+    to: "/Poste",
+    label: "Poste",
+    icon: mdiAccountSwitch,
   },
 ];

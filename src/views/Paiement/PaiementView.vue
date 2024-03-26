@@ -35,7 +35,7 @@ import FormField from "@/components/FormField.vue";
 import { toast } from "vue3-toastify";
 import "vue3-toastify/dist/index.css";
 let request = new RequestApi();
- 
+
 const isModalCreateCB = ref(false);
 const perPage = ref(5);
 const currentPage = ref(0);
@@ -44,8 +44,8 @@ let listPaiement = ref([]);
 let listMois = ref([]);
 let loading = ref(true);
 let loadingAction = ref(false);
-let mois = ref(); 
-let salaire = ref(""); 
+let mois = ref();
+let salaire = ref("");
 
 const mainStore = useMainStore();
 
@@ -111,6 +111,9 @@ async function getlistMois() {
         label: element.libelle,
       });
     });
+    const now = new Date();
+    const currentMonth = now.getMonth() - 1 > 0 ? now.getMonth() : 12;
+    mois.value = listMois.value.find((mois) => mois.id === currentMonth);
   } else {
   }
 }
@@ -144,7 +147,6 @@ onMounted(async () => {
   await getlistEmploye();
   await getlistMois();
 });
- 
 </script>
 
 <template>
@@ -186,7 +188,7 @@ onMounted(async () => {
     <SectionMain>
       <SectionTitleLineWithButton
         :icon="mdiAccountSwitch"
-        title="Paiement"
+        title="Paiement vos employes"
         main
       >
         <BaseButton

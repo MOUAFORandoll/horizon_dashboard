@@ -42,7 +42,6 @@ pipeline {
                     script {
                         
                       
-                    
                      sh 'docker stop horizon_dashboard || true'
                      sh 'docker rm -f horizon_dashboard || true'
                      sh 'docker image prune -f'

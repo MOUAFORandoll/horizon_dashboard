@@ -8,6 +8,10 @@ export class ApiEndPoint {
   cterrain = "/biker";
   mois = "/api/mois";
   absences = "/api/absences";
+  postes = "/api/postes";
+  type_postes = "/api/type_postes";
+  postesemployes = "/postes-employes";
+  api_postesemployes = "/api/list_employe_postes";
   secteur = "/secteur";
   // agregateur_read_all = "/agregateur/read/all";
   // agregateur_read_unique = "/agregateur/read/unique";

@@ -41,6 +41,14 @@ const routes = [
   },
   {
     meta: {
+      title: "Poste",
+    },
+    path: "/Poste",
+    name: "Poste",
+    component: () => import("@/views/Employe/PosteView.vue"),
+  },
+  {
+    meta: {
       title: "Error",
     },
     path: "/:catchAll(.*)*",

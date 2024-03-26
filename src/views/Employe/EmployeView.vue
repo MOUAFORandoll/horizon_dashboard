@@ -303,9 +303,10 @@ function setAction3(user) {
               <th>Region de service</th>
 
               <th>Matricule</th>
-              <th>Nombre d'absence</th>
+              <th>Nombre d'absence Total</th>
               <th>Salaire</th>
               <th>Date de prise de fonction</th>
+              <th>Date d'ajout</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -337,6 +338,9 @@ function setAction3(user) {
               </td>
               <td data-label="date_start">
                 {{ user.datePriseFonction.split("T")[0] }}
+              </td>
+              <td data-label="date_created">
+                {{ user.date_created }}
               </td>
 
               <td class="before:hidden lg:w-1 whitespace-nowrap">
@@ -379,4 +383,3 @@ function setAction3(user) {
     </SectionMain>
   </LayoutAuthenticated>
 </template>
-
