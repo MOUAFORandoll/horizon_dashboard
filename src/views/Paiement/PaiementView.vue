@@ -37,6 +37,7 @@ import "vue3-toastify/dist/index.css";
 let request = new RequestApi();
 
 const isModalCreateCB = ref(false);
+const isModalrapport = ref(false);
 const perPage = ref(5);
 const currentPage = ref(0);
 let listEmploye = ref([]);
@@ -77,8 +78,34 @@ async function creerPaiement() {
     loadingAction.value = false;
   }
 }
+async function imprimerrapportPaiement() {
+  let data = {
+    datePaiement: new Date(),
+    admin: "/api/user_plateforms/" + mainStore.id,
+    employe: "/api/employes/" + employe.value.id,
+    mois: "/api/mois/" + mois.value.id,
+    montant: parseInt(salaire.value),
+  };
+  console.log(data);
+  loadingAction.value = true;
+  const response = await request.creerPaiement(data);
+  if (response.status) {
+    console.log(response.message);
+
+    toast.success("Rapport imprime avec Succes !", {
+      autoClose: 2000,
+    });
+
+    loadingAction.value = false;
+  } else {
+    toast.error("Une erreur est survenue !", {
+      autoClose: 2000,
+    });
+    loadingAction.value = false;
+  }
+}
 async function getlistEmploye() {
-  const response = await request.listEmploye();
+  const response = await request.listEmployeSecond();
   if (response.status) {
     response.data.forEach((element) => {
       listEmploye.value.push({
@@ -143,8 +170,8 @@ const pagesList = computed(() => {
 });
 
 onMounted(async () => {
-  await getlistPaiement();
   await getlistEmploye();
+  await getlistPaiement();
   await getlistMois();
 });
 </script>
@@ -184,6 +211,37 @@ onMounted(async () => {
       />
     </BaseButtons>
   </CardBoxModal>
+  <CardBoxModal
+    v-model="isModalrapport"
+    title="Imprimer un rapport de  Paiement"
+    bg="purplePink"
+    button="danger"
+  >
+    <p>Vous allez payer un employe</p>
+
+    <FormField label="Selectionner un employe">
+      <FormControl
+        placeholder="Selectionner un employe"
+        v-model="employe"
+        v-on:change="salaire = employe.salaire"
+        :options="listEmploye"
+      />
+    </FormField>
+
+    <FormField label="Selectionner le mois ">
+      <FormControl v-model="mois" :options="listMois" />
+    </FormField>
+
+    <BaseButtons>
+      <BaseButton
+        @click="imprimerrapportPaiement"
+        type="submit"
+        :loading="loadingAction"
+        color="info"
+        label="Imprimer"
+      />
+    </BaseButtons>
+  </CardBoxModal>
   <LayoutAuthenticated>
     <SectionMain>
       <SectionTitleLineWithButton
@@ -191,6 +249,15 @@ onMounted(async () => {
         title="Paiement vos employes"
         main
       >
+        <BaseButton
+          @click="isModalrapport = true"
+          type="submit"
+          :loading="isModalCreateCB"
+          color="info"
+          rounded-full
+          small
+          label="Imprimer Rapport de paiement"
+        />
         <BaseButton
           target="_blank"
           label="Creer un paiement"

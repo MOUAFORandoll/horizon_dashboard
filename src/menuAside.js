@@ -30,7 +30,12 @@ export default [
   },
   {
     to: "/Poste",
-    label: "Poste",
+    label: "Poste Employe",
+    icon: mdiAccountSwitch,
+  },
+  {
+    to: "/Sanction",
+    label: "Sanctions ",
     icon: mdiAccountSwitch,
   },
 ];

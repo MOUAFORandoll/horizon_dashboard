@@ -49,6 +49,14 @@ const routes = [
   },
   {
     meta: {
+      title: "Sanction",
+    },
+    path: "/Sanction",
+    name: "Sanction",
+    component: () => import("@/views/Employe/SanctionView.vue"),
+  },
+  {
+    meta: {
       title: "Error",
     },
     path: "/:catchAll(.*)*",
