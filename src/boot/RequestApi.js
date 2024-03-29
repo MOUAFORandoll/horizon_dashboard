@@ -112,6 +112,35 @@ export class RequestApi {
       });
     return dataRes;
   };
+  /**
+   *
+   * @param {*}
+   * @returns
+   */
+  listEmployeSecond = async () => {
+    let dataRes = { status: true };
+
+    await api
+      .get(this.ApiEndPoint.employe_second)
+      .then(async (response) => {
+        if (response.status == 201 || response.status == 200) {
+          dataRes = {
+            status: true,
+            data: response.data.data,
+          };
+        } else {
+          dataRes = {
+            status: false,
+          };
+        }
+      })
+      .catch(() => {
+        dataRes = {
+          status: false,
+        };
+      });
+    return dataRes;
+  };
 
   /**
    *
@@ -315,6 +344,42 @@ export class RequestApi {
       });
     return dataRes;
   };
+  /**
+   *
+   *
+   * Start poste part
+   *
+   *
+   */
+  /**
+   *
+   * @param {*}
+   * @returns
+   */
+  newPoste = async (data) => {
+    let dataRes = { status: true };
+
+    await api
+      .post(this.ApiEndPoint.postes, data)
+      .then(async (response) => {
+        if (response.status == 201 || response.status == 200) {
+          dataRes = {
+            status: true,
+            data: response.data,
+          };
+        } else {
+          dataRes = {
+            status: false,
+          };
+        }
+      })
+      .catch(() => {
+        dataRes = {
+          status: false,
+        };
+      });
+    return dataRes;
+  };
 
   /**
    *
@@ -387,6 +452,177 @@ export class RequestApi {
 
     await api
       .post(this.ApiEndPoint.api_postesemployes, data)
+      .then(async (response) => {
+        if (response.status == 201 || response.status == 200) {
+          dataRes = {
+            status: true,
+          };
+        } else {
+          dataRes = {
+            status: false,
+          };
+        }
+      })
+      .catch(() => {
+        dataRes = {
+          status: false,
+        };
+      });
+    return dataRes;
+  };
+  // Sanction bloc
+
+  /**
+   *
+   *
+   * Start sanction part
+   *
+   *
+   */
+  /**
+   *
+   * @param {*}
+   * @returns
+   */
+  listSanctionEmploye = async () => {
+    let dataRes = { status: true };
+
+    await api
+      .get(this.ApiEndPoint.api_sanctionsemployes)
+      .then(async (response) => {
+        if (response.status == 201 || response.status == 200) {
+          dataRes = {
+            status: true,
+            data: response.data,
+          };
+        } else {
+          dataRes = {
+            status: false,
+          };
+        }
+      })
+      .catch(() => {
+        dataRes = {
+          status: false,
+        };
+      });
+    return dataRes;
+  };
+
+  /**
+   *
+   *
+   * Start sanction part
+   *
+   *
+   */
+  /**
+   *
+   * @param {*}
+   * @returns
+   */
+  listSanctionEmployeFilter = async (employe) => {
+    let dataRes = { status: true };
+
+    await api
+      .get(this.ApiEndPoint.api_sanctionsemployes + "?employe=" + employe)
+      .then(async (response) => {
+        if (response.status == 201 || response.status == 200) {
+          dataRes = {
+            status: true,
+            data: response.data,
+          };
+        } else {
+          dataRes = {
+            status: false,
+          };
+        }
+      })
+      .catch(() => {
+        dataRes = {
+          status: false,
+        };
+      });
+    return dataRes;
+  };
+  /**
+   *
+   *
+   * Start sanction part
+   *
+   *
+   */
+  /**
+   *
+   * @param {*}
+   * @returns
+   */
+  newSanction = async (data) => {
+    let dataRes = { status: true };
+
+    await api
+      .post(this.ApiEndPoint.sanctions, data)
+      .then(async (response) => {
+        if (response.status == 201 || response.status == 200) {
+          dataRes = {
+            status: true,
+            data: response.data,
+          };
+        } else {
+          dataRes = {
+            status: false,
+          };
+        }
+      })
+      .catch(() => {
+        dataRes = {
+          status: false,
+        };
+      });
+    return dataRes;
+  };
+
+  /**
+   *
+   * @param {*}
+   * @returns
+   */
+  listSanction = async () => {
+    let dataRes = { status: true };
+
+    await api
+      .get(this.ApiEndPoint.sanctions)
+      .then(async (response) => {
+        if (response.status == 201 || response.status == 200) {
+          dataRes = {
+            status: true,
+            data: response.data,
+          };
+        } else {
+          dataRes = {
+            status: false,
+          };
+        }
+      })
+      .catch(() => {
+        dataRes = {
+          status: false,
+        };
+      });
+    return dataRes;
+  };
+
+  /**
+   *
+   * @param {*}
+   * @returns
+   */
+  giveSanction = async (data) => {
+    // //console.log('sdddsd');
+    let dataRes = { status: true };
+
+    await api
+      .post(this.ApiEndPoint.api_sanctionsemployes, data)
       .then(async (response) => {
         if (response.status == 201 || response.status == 200) {
           dataRes = {

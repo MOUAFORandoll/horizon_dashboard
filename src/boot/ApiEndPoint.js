@@ -2,6 +2,7 @@ export class ApiEndPoint {
   login = "/api/logins";
 
   // Agregator
+  employe_second = "/employes";
   employe = "/api/employes";
   paiement = "/api/paiements";
   cterrain = "/cterrain";
@@ -13,6 +14,10 @@ export class ApiEndPoint {
   postesemployes = "/postes-employes";
   api_postesemployes = "/api/list_employe_postes";
   secteur = "/secteur";
+
+  api_sanctionsemployes = "/api/list_employe_sanctions";
+  sanctions = "/api/sanctions";
+
   // agregateur_read_all = "/agregateur/read/all";
   // agregateur_read_unique = "/agregateur/read/unique";
 

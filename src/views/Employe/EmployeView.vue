@@ -38,6 +38,7 @@ const isModalCreateCB = ref(false);
 const perPage = ref(5);
 const currentPage = ref(0);
 let listEmploye = ref([]);
+let listMois = ref([]);
 let loading = ref(true);
 let loadingAction = ref(false);
 let name = ref("");
@@ -46,9 +47,25 @@ let phone = ref("");
 let salaire = ref("");
 let dateStart = ref();
 let heureArrive = ref();
+let mois = ref();
 
 const mainStore = useMainStore();
 
+async function getlistMois() {
+  const response = await request.listMois();
+  if (response.status) {
+    response.data.forEach((element) => {
+      listMois.value.push({
+        id: element.id,
+        label: element.libelle,
+      });
+    });
+    const now = new Date();
+    const currentMonth = now.getMonth() + 1;
+    mois.value = listMois.value.find((mois) => mois.id === currentMonth);
+  } else {
+  }
+}
 async function creerEmploye() {
   let data = {
     nom: name.value,
@@ -117,6 +134,8 @@ const router = useRouter();
 
 onMounted(async () => {
   connected();
+
+  await getlistMois();
   await getlistEmploye();
 });
 
@@ -153,6 +172,7 @@ const marquerAbesent = async () => {
     heureArrive: heureArrive.value,
     employe: "/api/employes/" + _seletUser.value.id,
     date: new Date(),
+    mois: "/api/mois/" + mois.value.id,
   };
   const response = await request.marquerAbesent(data);
   if (response.status) {
